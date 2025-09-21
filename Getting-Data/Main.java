@@ -6,7 +6,8 @@ import java.net.http.HttpResponse;
 public class Main {
 
     public static void main(String[] args) {
-        String getURL = "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds/?apiKey=507b38f16412efbbf60f1cfeb2cada95&regions=us&markets=h2h";
+        String apiKey = "";
+        String getURL = "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds/?apiKey=" + apiKey + "&regions=us&markets=h2h";
         
         try {
             // 1. Create the HttpClient
