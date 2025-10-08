@@ -1,0 +1,469 @@
+[
+  {
+    "id": "4c4ae4a2d54fc3f71c450187e9391ddc",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:02:00Z",
+    "completed": true,
+    "home_team": "Philadelphia Eagles",
+    "away_team": "Los Angeles Rams",
+    "scores": [
+      {
+        "name": "Los Angeles Rams",
+        "score": "26"
+      },
+      {
+        "name": "Philadelphia Eagles",
+        "score": "33"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "97de7672b61dbddbce982711c121e76d",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:02:24Z",
+    "completed": true,
+    "home_team": "Jacksonville Jaguars",
+    "away_team": "Houston Texans",
+    "scores": [
+      {
+        "name": "Houston Texans",
+        "score": "10"
+      },
+      {
+        "name": "Jacksonville Jaguars",
+        "score": "17"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "c4c42918a645b1a4773f47d7eaa5cfcf",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:02:29Z",
+    "completed": true,
+    "home_team": "New England Patriots",
+    "away_team": "Pittsburgh Steelers",
+    "scores": [
+      {
+        "name": "Pittsburgh Steelers",
+        "score": "21"
+      },
+      {
+        "name": "New England Patriots",
+        "score": "14"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "581955d1b79fe87a3a61a4885cd7ea67",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:02:30Z",
+    "completed": true,
+    "home_team": "Cleveland Browns",
+    "away_team": "Green Bay Packers",
+    "scores": [
+      {
+        "name": "Green Bay Packers",
+        "score": "10"
+      },
+      {
+        "name": "Cleveland Browns",
+        "score": "13"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "02522f48a7b7e7524881c1b1638cd94d",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:02:33Z",
+    "completed": true,
+    "home_team": "Tampa Bay Buccaneers",
+    "away_team": "New York Jets",
+    "scores": [
+      {
+        "name": "New York Jets",
+        "score": "27"
+      },
+      {
+        "name": "Tampa Bay Buccaneers",
+        "score": "29"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "03a5eed2c8ef5d1c8a48866ea4b0d63a",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:02:46Z",
+    "completed": true,
+    "home_team": "Washington Commanders",
+    "away_team": "Las Vegas Raiders",
+    "scores": [
+      {
+        "name": "Las Vegas Raiders",
+        "score": "24"
+      },
+      {
+        "name": "Washington Commanders",
+        "score": "41"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "5737e4dbf6879c5061bb23033a4d8a55",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:03:31Z",
+    "completed": true,
+    "home_team": "Carolina Panthers",
+    "away_team": "Atlanta Falcons",
+    "scores": [
+      {
+        "name": "Atlanta Falcons",
+        "score": "0"
+      },
+      {
+        "name": "Carolina Panthers",
+        "score": "30"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "eefb7f130c8fc2c129e296fe5c6ba3e3",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:03:32Z",
+    "completed": true,
+    "home_team": "Minnesota Vikings",
+    "away_team": "Cincinnati Bengals",
+    "scores": [
+      {
+        "name": "Cincinnati Bengals",
+        "score": "10"
+      },
+      {
+        "name": "Minnesota Vikings",
+        "score": "48"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "bb506016737825f4d0b1f9862f95c246",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T17:04:00Z",
+    "completed": true,
+    "home_team": "Tennessee Titans",
+    "away_team": "Indianapolis Colts",
+    "scores": [
+      {
+        "name": "Indianapolis Colts",
+        "score": "41"
+      },
+      {
+        "name": "Tennessee Titans",
+        "score": "20"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "0ee3f5a0078c21cfdffd1b97002e7da5",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T20:05:22Z",
+    "completed": true,
+    "home_team": "Los Angeles Chargers",
+    "away_team": "Denver Broncos",
+    "scores": [
+      {
+        "name": "Denver Broncos",
+        "score": "20"
+      },
+      {
+        "name": "Los Angeles Chargers",
+        "score": "23"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "311c411c2d53e36a902763dc7a2ef678",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T20:05:29Z",
+    "completed": true,
+    "home_team": "Seattle Seahawks",
+    "away_team": "New Orleans Saints",
+    "scores": [
+      {
+        "name": "New Orleans Saints",
+        "score": "13"
+      },
+      {
+        "name": "Seattle Seahawks",
+        "score": "44"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "186868cc79ce1f5d22075b67ebbc7b64",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T20:25:57Z",
+    "completed": true,
+    "home_team": "Chicago Bears",
+    "away_team": "Dallas Cowboys",
+    "scores": [
+      {
+        "name": "Dallas Cowboys",
+        "score": "14"
+      },
+      {
+        "name": "Chicago Bears",
+        "score": "31"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "20b50dac292089c063b21e1410f172ef",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-21T20:28:00Z",
+    "completed": true,
+    "home_team": "San Francisco 49ers",
+    "away_team": "Arizona Cardinals",
+    "scores": [
+      {
+        "name": "Arizona Cardinals",
+        "score": "15"
+      },
+      {
+        "name": "San Francisco 49ers",
+        "score": "16"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "ee840f13db8bd150fcdd8f6670fa7041",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-22T00:23:00Z",
+    "completed": true,
+    "home_team": "New York Giants",
+    "away_team": "Kansas City Chiefs",
+    "scores": [
+      {
+        "name": "Kansas City Chiefs",
+        "score": "22"
+      },
+      {
+        "name": "New York Giants",
+        "score": "9"
+      }
+    ],
+    "last_update": "2025-09-22T08:58:50Z"
+  },
+  {
+    "id": "6e67ddae4bb01d1c2d3f461ee62d2666",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-23T00:15:00Z",
+    "completed": false,
+    "home_team": "Baltimore Ravens",
+    "away_team": "Detroit Lions",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "4a08b89f07a4a395620f6df5c1d239f4",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-26T00:16:00Z",
+    "completed": false,
+    "home_team": "Arizona Cardinals",
+    "away_team": "Seattle Seahawks",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "4dd631102a977fd398f7ea594ed208f2",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T13:31:00Z",
+    "completed": false,
+    "home_team": "Pittsburgh Steelers",
+    "away_team": "Minnesota Vikings",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "b7934d72587b62de0f563ac9acbaa770",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T17:01:00Z",
+    "completed": false,
+    "home_team": "Atlanta Falcons",
+    "away_team": "Washington Commanders",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "d16a43752aaac66e9ff8768d8590b662",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T17:01:00Z",
+    "completed": false,
+    "home_team": "Buffalo Bills",
+    "away_team": "New Orleans Saints",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "f8fe40924827231233dc10f6999d8ff7",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T17:01:00Z",
+    "completed": false,
+    "home_team": "New England Patriots",
+    "away_team": "Carolina Panthers",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "bcb1f89cf378a586097c50585e53acce",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T17:01:00Z",
+    "completed": false,
+    "home_team": "Detroit Lions",
+    "away_team": "Cleveland Browns",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "85c9b76cd6bd575b611cb4e8feb7a0b0",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T17:01:00Z",
+    "completed": false,
+    "home_team": "Houston Texans",
+    "away_team": "Tennessee Titans",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "d921b1e86b0a30ad91000ffc360d302d",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T17:01:00Z",
+    "completed": false,
+    "home_team": "New York Giants",
+    "away_team": "Los Angeles Chargers",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "894976986c24d52cf1d45f0e6bb0e90c",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T17:01:00Z",
+    "completed": false,
+    "home_team": "Tampa Bay Buccaneers",
+    "away_team": "Philadelphia Eagles",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "d90e0de2d5fa2d57e8812f31775ad0ba",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T20:06:00Z",
+    "completed": false,
+    "home_team": "Los Angeles Rams",
+    "away_team": "Indianapolis Colts",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "09f55b4a19a83eb951a9400a11123477",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T20:06:00Z",
+    "completed": false,
+    "home_team": "San Francisco 49ers",
+    "away_team": "Jacksonville Jaguars",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "051233db287b02fd3e7574955879ece2",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T20:26:00Z",
+    "completed": false,
+    "home_team": "Kansas City Chiefs",
+    "away_team": "Baltimore Ravens",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "af6fbb0a2e996613bc393115276c60e2",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-28T20:26:00Z",
+    "completed": false,
+    "home_team": "Las Vegas Raiders",
+    "away_team": "Chicago Bears",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "de432abcc3bd8d42a582ae9f71388dcd",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-29T00:21:00Z",
+    "completed": false,
+    "home_team": "Dallas Cowboys",
+    "away_team": "Green Bay Packers",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "bc76fb8d846588ed46297aaab4e83de9",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-29T22:16:00Z",
+    "completed": false,
+    "home_team": "Miami Dolphins",
+    "away_team": "New York Jets",
+    "scores": null,
+    "last_update": null
+  },
+  {
+    "id": "8dcb2a6bf542ccb7e6bc58f83c8fc2ac",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-09-29T23:16:00Z",
+    "completed": false,
+    "home_team": "Denver Broncos",
+    "away_team": "Cincinnati Bengals",
+    "scores": null,
+    "last_update": null
+  }
+]
