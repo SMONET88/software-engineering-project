@@ -33,7 +33,7 @@ const GameList = ({ games }) => {
                 </tr>
               </thead>
               <tbody>
-                {/* 🏠 Home team row */}
+                {/* Home team row */}
                 <tr>
                   <td style={{ fontWeight: "bold" }}>{game.home_team}</td>
                   <td>
@@ -53,7 +53,7 @@ const GameList = ({ games }) => {
                   </td>
                 </tr>
 
-                {/* 🛫 Away team row */}
+                {/* Away team row */}
                 <tr>
                   <td style={{ fontWeight: "bold" }}>{game.away_team}</td>
                   <td>
