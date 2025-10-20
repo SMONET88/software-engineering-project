@@ -5,12 +5,42 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #260A7A;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.top-element {
+  top: 0;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+
+.money-text {
+  color: white;
+  background-color: #39D353;
+  font-size: 15px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.center-container {
+  text-align: center;
+}
+
+.rounded-div {
+  border: 3px solid #3A04C9;
+  border-radius: 25px; 
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
 }
 
 a {
@@ -23,16 +53,11 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 button {
@@ -42,16 +67,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #150145;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border-color: white;
 }
 
 @media (prefers-color-scheme: light) {
