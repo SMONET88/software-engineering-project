@@ -1,11 +1,5 @@
 package gettingdata;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Arrays;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -31,8 +25,6 @@ public class Main {
             // System.out.println("Status code: " + response.statusCode());
             // System.out.println("Response body: " + response.body());
 
-            String test = Arrays.toString(Methods.getScores());
-            System.out.println("SCORES HERE:" + test);
 
         } catch (Exception e) {
             e.printStackTrace();
