@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import GameList from "./GameList";
 import sample_data from "./sampleData";
+import { GameList2 } from './GameList2';
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
       <h3 className="money-text">{money} CURRENCY NAME</h3>
     </div>
 
-    <GameList games={sample_data} />
+    {/* <GameList games={sample_data} /> */}
+    <GameList2 games={sample_data} />
     </>
   )
 }

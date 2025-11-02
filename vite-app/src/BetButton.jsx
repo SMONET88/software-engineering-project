@@ -1,4 +1,4 @@
-import { react, useState } from 'react'
+import {  useState } from 'react'
 
 const BetButton = ({ label }) => {
     const [clicked, setClicked] = useState(false);

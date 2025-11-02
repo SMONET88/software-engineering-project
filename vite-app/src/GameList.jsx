@@ -1,5 +1,6 @@
 import React from "react";
 import BetButton from "./BetButton";
+import "./App.css";
 
 const GameList = ({ games }) => {
   return (
@@ -18,7 +19,9 @@ const GameList = ({ games }) => {
           const hours = date.getHours();
           const minutes = date.getMinutes().toString().padStart(2, "0");
           const ampm = hours >= 12 ? "pm" : "am";
-          return `${date.getMonth() + 1}/${date.getDate()}, ${hours % 12 || 12}:${minutes}${ampm}`;
+          return `${date.getMonth() + 1}/${date.getDate()}, ${
+            hours % 12 || 12
+          }:${minutes}${ampm}`;
         };
 
         return (
@@ -30,6 +33,8 @@ const GameList = ({ games }) => {
                   <th>Winner</th>
                   <th>Spread</th>
                   <th>Total Points</th>
+                  <th>$</th>
+                  <th>profit if hit</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,18 +43,25 @@ const GameList = ({ games }) => {
                   <td style={{ fontWeight: "bold" }}>{game.home_team}</td>
                   <td>
                     <BetButton
-                      label={h2h.outcomes.find((o) => o.name === game.home_team)?.price}
+                      label={
+                        h2h.outcomes.find((o) => o.name === game.home_team)
+                          ?.price
+                      }
                     />
                   </td>
                   <td>
                     <BetButton
-                      label={`${spreads.outcomes.find((o) => o.name === game.home_team)?.price} (${spreads.outcomes.find((o) => o.name === game.home_team)?.point})`}
+                      label={`${
+                        spreads.outcomes.find((o) => o.name === game.home_team)
+                          ?.price
+                      } (${
+                        spreads.outcomes.find((o) => o.name === game.home_team)
+                          ?.point
+                      })`}
                     />
                   </td>
                   <td>
-                    <BetButton
-                      label={`O ${over?.point} (${over?.price})`}
-                    />
+                    <BetButton label={`O ${over?.point} (${over?.price})`} />
                   </td>
                 </tr>
 
@@ -58,18 +70,25 @@ const GameList = ({ games }) => {
                   <td style={{ fontWeight: "bold" }}>{game.away_team}</td>
                   <td>
                     <BetButton
-                      label={h2h.outcomes.find((o) => o.name === game.away_team)?.price}
+                      label={
+                        h2h.outcomes.find((o) => o.name === game.away_team)
+                          ?.price
+                      }
                     />
                   </td>
                   <td>
                     <BetButton
-                      label={`${spreads.outcomes.find((o) => o.name === game.away_team)?.price} (${spreads.outcomes.find((o) => o.name === game.away_team)?.point})`}
+                      label={`${
+                        spreads.outcomes.find((o) => o.name === game.away_team)
+                          ?.price
+                      } (${
+                        spreads.outcomes.find((o) => o.name === game.away_team)
+                          ?.point
+                      })`}
                     />
                   </td>
                   <td>
-                    <BetButton
-                      label={`U ${under?.point} (${under?.price})`}
-                    />
+                    <BetButton label={`U ${under?.point} (${under?.price})`} />
                   </td>
                 </tr>
               </tbody>
