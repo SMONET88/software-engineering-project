@@ -14,5 +14,6 @@ bin/
 .idea/
 *.iml
 
-src/main/resources/application.properties
+Getting-Data/demo/src/main/resources/application.properties
+
 
