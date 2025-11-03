@@ -1,0 +1,8 @@
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/DemoApplication.java
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/controller/BetController.java
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/model/Bet.java
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/model/GameResult.java
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/model/PotentialBet.java
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/service/BetApiService.java
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/service/BetDataLoader.java
+/Users/cameronkelly/Desktop/school/software_engineering/experiment/demo/src/main/java/com/example/demo/service/BetEvaluatorService.java

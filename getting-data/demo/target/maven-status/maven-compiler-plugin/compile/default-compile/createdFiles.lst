@@ -1,0 +1,13 @@
+com/example/demo/model/Bet.class
+com/example/demo/controller/BetController.class
+com/example/demo/model/Bet$BetType.class
+com/example/demo/service/BetEvaluatorService.class
+com/example/demo/model/PotentialBet$Market.class
+com/example/demo/service/BetEvaluatorService$1.class
+com/example/demo/DemoApplication.class
+com/example/demo/model/GameResult.class
+com/example/demo/model/PotentialBet$Outcome.class
+com/example/demo/model/PotentialBet$Bookmaker.class
+com/example/demo/model/PotentialBet.class
+com/example/demo/service/BetApiService.class
+com/example/demo/service/BetDataLoader.class
