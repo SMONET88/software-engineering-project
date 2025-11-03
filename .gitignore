@@ -1,2 +1,15 @@
 .gradle/
 bin/
+
+# Compiled class files
+*.class
+
+# Maven / Gradle build output
+target/
+build/
+bin/
+.gradle/
+
+# IDE files
+.idea/
+*.iml
