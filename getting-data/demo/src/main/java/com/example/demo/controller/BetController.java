@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.PotentialBet;
+import com.example.demo.model.UserBet;
 import com.example.demo.service.BetApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class BetController {
 
     @PostMapping("/submit-bet")
     // PLACEHOLDER. EVENTUALLY WILL PROCESS BET SUBMISSION
-    public PotentialBet submitBet(@RequestBody PotentialBet bet) {
+    public UserBet submitBet(@RequestBody UserBet bet) {
         System.out.println("Received bet: " + bet);
         // For now, just return it back as confirmation
         return bet;
