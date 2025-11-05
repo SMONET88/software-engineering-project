@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 10px;
+}
+
+.rounded-div {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px 0;
+  background-color: #f9f9f9;
+}
+
+.bet-type-buttons {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  align-items: flex-start; /* Align buttons to the left */
+  gap: 10px; /* Space between buttons */
+  padding: 20px;
+  position: absolute; /* Optional: pin to left side */
+  left: 0;
+  top: 400px; /* Adjust as needed */
+}
