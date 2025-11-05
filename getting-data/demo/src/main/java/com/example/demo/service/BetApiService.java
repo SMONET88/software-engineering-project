@@ -61,7 +61,17 @@ public class BetApiService {
                                 for (Map<String, Object> outcomeMap : outcomeMaps) {
                                     String name = (String) outcomeMap.get("name");
                                     double price = ((Number) outcomeMap.get("price")).doubleValue();
-                                    outcomes.add(new Outcome(name, price));
+
+                                    // Extract point if it exists, otherwise null
+                                    Double point = null;
+                                    if (outcomeMap.containsKey("point")) {
+                                        Object pointObj = outcomeMap.get("point");
+                                        if (pointObj != null) {
+                                            point = ((Number) pointObj).doubleValue();
+                                        }
+                                    }
+
+                                    outcomes.add(new Outcome(name, price, point));
                                 }
                             }
 

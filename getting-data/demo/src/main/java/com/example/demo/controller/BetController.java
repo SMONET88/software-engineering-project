@@ -23,7 +23,7 @@ public class BetController {
     }
 
     // Endpoint to fetch all bets
-    @GetMapping("/api/bets")
+    @GetMapping("/bets")
     public List<PotentialBet> getBets() {
         return betApiService.fetchPotentialBets();
     }

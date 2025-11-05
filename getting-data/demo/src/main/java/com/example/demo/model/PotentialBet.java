@@ -113,25 +113,30 @@ public class PotentialBet {
     public static class Outcome {
         private String name;
         private double price;
+        private Double point; // nullable for h2h outcomes
 
         public Outcome() {}
 
-        public Outcome(String name, double price) {
+        public Outcome(String name, double price, Double point) {
             this.name = name;
             this.price = price;
+            this.point = point;
         }
 
         public String getName() { return name; }
         public double getPrice() { return price; }
+        public Double getPoint() { return point; }
 
         public void setName(String name) { this.name = name; }
         public void setPrice(double price) { this.price = price; }
+        public void setPoint(Double point) { this.point = point; }
 
         @Override
         public String toString() {
             return "Outcome{" +
                     "name='" + name + '\'' +
                     ", price=" + price +
+                    ", point=" + point +
                     '}';
         }
     }
