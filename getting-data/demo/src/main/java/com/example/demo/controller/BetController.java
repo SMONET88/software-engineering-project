@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 
@@ -29,10 +31,17 @@ public class BetController {
     }
 
     @PostMapping("/submit-bet")
-    // PLACEHOLDER. EVENTUALLY WILL PROCESS BET SUBMISSION
     public UserBet submitBet(@RequestBody UserBet bet) {
         System.out.println("Received bet: " + bet);
-        // For now, just return it back as confirmation
+        // Set status to PENDING automatically
+        bet.setStatus("PENDING");
+        // STORE BET IN DATABASE
         return bet;
+    }
+
+    @PostMapping("/verifyBets")
+    public ResponseEntity<String> verifyBets() {
+
+        return ResponseEntity.ok("Bet verification triggered successfully.");
     }
 }
