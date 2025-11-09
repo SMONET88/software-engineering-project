@@ -1,10 +1,9 @@
-import { useState } from "react";
-import "../src/InputButton.css";
+import { useState, useEffect } from "react";
 import sample_data from "./sampleData";
-import { useEffect } from "react";
 
-const CalculateBet = (name, betType) => {
-  const [bet, setBet] = useState(0);
+const CalculateBet = (name, betType, onProfitReady) => {
+  const [betInput, setBet] = useState("");
+
 
   const teamName = name.name;
 
@@ -28,22 +27,33 @@ const CalculateBet = (name, betType) => {
   const odds = oddsDictionary[teamName];
 
 
+
   const profitCalculation = () => {
-    
-    if (odds === 100){
-     return bet * 2;
+
+    const bet = Number(betInput);
+
+
+    if (typeof bet !== "number" || isNaN(bet)) {
+      return 0;
+    } else if (odds === 100) {
+      return bet * 2;
     } else if (odds > 0) {
       return ((odds / 100) * bet).toFixed(2);
     } else if (odds < 0) {
       return ((100 / Math.abs(odds)) * bet).toFixed(2);
     }
   };
-  
 
-   useEffect(() => {
-    setBet(0);
-   }, [betType]);
- 
+
+  const profit = profitCalculation();
+
+  useEffect(() => {
+    if (typeof onProfitReady === "function") {
+      onProfitReady(profit);
+    }
+  }, [profit, onProfitReady]);
+
+
 
   return (
     <>
@@ -52,10 +62,10 @@ const CalculateBet = (name, betType) => {
           <input
             type="text"
             className="input"
-            value={bet}
-            onChange={(e) => setBet(+e.target.value)}
+            value={betInput}
+            onChange={(e) => setBet(e.target.value)}
           ></input>
-          <div className="box">{`${profitCalculation()}`}</div>
+          <div className="box">{profit}</div>
         </div>
       </div>
     </>

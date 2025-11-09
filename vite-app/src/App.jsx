@@ -1,6 +1,6 @@
 //import { useState } from 'react'
-import sample_data from "./components/sampleData";
-import GameList2 from "../src/components/GameList2";
+import { GameList2 } from "./GameList2";
+import sample_data from "./sampleData";
 
 function App() {
   // const [money, setMoney] = useState(100);
