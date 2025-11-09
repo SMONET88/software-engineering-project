@@ -21,6 +21,8 @@ public class UserBet {
     // Only used for TOTAL bets to indicate over/under
     private Boolean isOver;
 
+    private String status; // "PENDING", "WIN", "LOSS"
+
     // Default constructor
     public UserBet() {}
 
@@ -32,6 +34,7 @@ public class UserBet {
         this.line = line;
         this.odds = odds;
         this.isOver = isOver;
+        this.status = "PENDING";
     }
 
     // Getters and Setters
@@ -81,6 +84,14 @@ public class UserBet {
 
     public void setIsOver(Boolean isOver) {
         this.isOver = isOver;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
