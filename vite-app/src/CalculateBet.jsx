@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import sample_data from "./sampleData";
 
-const CalculateBet = (name, betType, onProfitReady) => {
+const CalculateBet = (name, betType) => {
   const [betInput, setBet] = useState("");
 
 
@@ -12,6 +12,8 @@ const CalculateBet = (name, betType, onProfitReady) => {
   sample_data.map((game) => {
     game.bookmakers?.forEach((bookmaker) => {
       const h2h = bookmaker.markets.find((m) => m.key === "h2h");
+      const spread = bookmaker.markets.find((m) => m.key === "spread");
+      const totals = bookmaker.markets.find((m) => m.key === "totals");
 
       const currName0 = h2h.outcomes[0].name;
       const currPrice0 = h2h.outcomes[0].price;
@@ -47,11 +49,6 @@ const CalculateBet = (name, betType, onProfitReady) => {
 
   const profit = profitCalculation();
 
-  useEffect(() => {
-    if (typeof onProfitReady === "function") {
-      onProfitReady(profit);
-    }
-  }, [profit, onProfitReady]);
 
 
 

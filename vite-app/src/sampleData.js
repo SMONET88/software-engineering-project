@@ -1,3 +1,71 @@
+// const sample_data = [
+//   {
+//     id: "438868ff90501a1fe9a0fbecbee9dc12",
+//     commenceTime: "2025-11-11T01:15:00Z",
+//     homeTeam: "Green Bay Packers",
+//     awayTeam: "Philadelphia Eagles",
+//     bookmakers: [
+//       {
+//         key: "fanduel",
+//         title: "FanDuel",
+//         lastUpdate: "2025-11-09T22:26:57Z",
+//         markets: [
+//           {
+//             key: "h2h",
+//             lastUpdate: "2025-11-09T22:26:57Z",
+//             outcomes: [
+//               {
+//                 name: "Green Bay Packers",
+//                 price: -118,
+//                 point: null
+//               },
+//               {
+//                 name: "Philadelphia Eagles",
+//                 price: 100,
+//                 point: null
+//               }
+//             ]
+//           },
+//           {
+//             key: "spreads",
+//             lastUpdate: "2025-11-09T22:26:57Z",
+//             outcomes: [
+//               {
+//                 name: "Green Bay Packers",
+//                 price: -105,
+//                 point: -1.5
+//               },
+//               {
+//                 name: "Philadelphia Eagles",
+//                 price: -115,
+//                 point: 1.5
+//               }
+//             ]
+//           },
+//           {
+//             key: "totals",
+//             lastUpdate: "2025-11-09T22:26:57Z",
+//             outcome: [
+//               {
+//                 name: "Over",
+//                 price: -120,
+//                 point: 44.5
+//               },
+//               {
+//                 name: "Under",
+//                 price: -102,
+//                 point: 44.5
+//               }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//   }
+// ]
+
+
+
 const sample_data = [
   {
     id: "79de65f1b97c9145ebdcb019eb486500",
