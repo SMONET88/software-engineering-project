@@ -68,37 +68,62 @@
 
 const sample_data = [
   {
-    id: "79de65f1b97c9145ebdcb019eb486500",
-    sport_key: "americanfootball_nfl",
-    sport_title: "NFL",
-    commence_time: "2025-10-19T13:30:00Z",
-    home_team: "Jacksonville Jaguars",
-    away_team: "Los Angeles Rams",
-    bookmakers: [
+    "id": "438868ff90501a1fe9a0fbecbee9dc12",
+    "commence_time": "2025-11-11T01:15:00Z",
+    "home_team": "Green Bay Packers",
+    "away_team": "Philadelphia Eagles",
+    "bookmakers": [
       {
-        key: "fanduel",
-        title: "FanDuel",
-        last_update: "2025-10-18T20:50:55Z",
-        markets: [
+        "key": "fanduel",
+        "title": "FanDuel",
+        "last_update": "2025-11-10T05:50:40Z",
+        "markets": [
           {
-            key: "h2h",
-            outcomes: [
-              { name: "Jacksonville Jaguars", price: 138 },
-              { name: "Los Angeles Rams", price: -164 }
+            "key": "h2h",
+            "last_update": "2025-11-10T05:50:40Z",
+            "outcomes": [
+              {
+                "name": "Green Bay Packers",
+                "price": -120,
+                "point": null
+              },
+              {
+                "name": "Philadelphia Eagles",
+                "price": 102,
+                "point": null
+              }
             ]
           },
           {
-            key: "spreads",
-            outcomes: [
-              { name: "Jacksonville Jaguars", price: -110, point: 3 },
-              { name: "Los Angeles Rams", price: -110, point: -3 }
+            "key": "spreads",
+            "last_update": "2025-11-10T05:50:40Z",
+            "outcomes": [
+              {
+                "name": "Green Bay Packers",
+                "price": -105,
+                "point": -1.5
+              },
+              {
+                "name": "Philadelphia Eagles",
+                "price": -115,
+                "point": 1.5
+              }
             ]
           },
           {
-            key: "totals",
-            outcomes: [
-              { name: "Over", price: -112, point: 44.5 },
-              { name: "Under", price: -108, point: 44.5 }
+            "key": "totals",
+            "last_update": "2025-11-10T05:50:40Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": -110,
+                "point": 45.5
+              },
+              {
+                "name": "Under",
+                "price": -110,
+                "point": 45.5
+              }
             ]
           }
         ]
@@ -106,37 +131,62 @@ const sample_data = [
     ]
   },
   {
-    id: "ba4e8bfa1f4eeaa74c7b09f409361c0d",
-    sport_key: "americanfootball_nfl",
-    sport_title: "NFL",
-    commence_time: "2025-10-19T17:00:00Z",
-    home_team: "New York Jets",
-    away_team: "Carolina Panthers",
-    bookmakers: [
+    "id": "32ec2bd4ac9e4c40f9f5cbed7e67f837",
+    "commence_time": "2025-11-14T01:15:00Z",
+    "home_team": "New England Patriots",
+    "away_team": "New York Jets",
+    "bookmakers": [
       {
-        key: "fanduel",
-        title: "FanDuel",
-        last_update: "2025-10-18T20:50:55Z",
-        markets: [
+        "key": "fanduel",
+        "title": "FanDuel",
+        "last_update": "2025-11-10T05:50:40Z",
+        "markets": [
           {
-            key: "h2h",
-            outcomes: [
-              { name: "Carolina Panthers", price: -118 },
-              { name: "New York Jets", price: 100 }
+            "key": "h2h",
+            "last_update": "2025-11-10T05:50:40Z",
+            "outcomes": [
+              {
+                "name": "New England Patriots",
+                "price": -800,
+                "point": null
+              },
+              {
+                "name": "New York Jets",
+                "price": 560,
+                "point": null
+              }
             ]
           },
           {
-            key: "spreads",
-            outcomes: [
-              { name: "Carolina Panthers", price: -105, point: -1.5 },
-              { name: "New York Jets", price: -115, point: 1.5 }
+            "key": "spreads",
+            "last_update": "2025-11-10T05:50:40Z",
+            "outcomes": [
+              {
+                "name": "New England Patriots",
+                "price": -115,
+                "point": -10.5
+              },
+              {
+                "name": "New York Jets",
+                "price": -105,
+                "point": 10.5
+              }
             ]
           },
           {
-            key: "totals",
-            outcomes: [
-              { name: "Over", price: -110, point: 41.5 },
-              { name: "Under", price: -110, point: 41.5 }
+            "key": "totals",
+            "last_update": "2025-11-10T05:50:40Z",
+            "outcomes": [
+              {
+                "name": "Over",
+                "price": -110,
+                "point": 44.5
+              },
+              {
+                "name": "Under",
+                "price": -110,
+                "point": 44.5
+              }
             ]
           }
         ]

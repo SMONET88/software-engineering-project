@@ -62,7 +62,7 @@ public class BetApiService {
                                     String name = (String) outcomeMap.get("name");
                                     double price = ((Number) outcomeMap.get("price")).doubleValue();
 
-                                    // Extract point if it exists, otherwise null
+                                    // Optional field: point
                                     Double point = null;
                                     if (outcomeMap.containsKey("point")) {
                                         Object pointObj = outcomeMap.get("point");
@@ -83,7 +83,7 @@ public class BetApiService {
                 }
             }
 
-            potentialBets.add(new PotentialBet(gameId, commenceTime, homeTeam, awayTeam, bookmakers));
+           potentialBets.add(new PotentialBet(gameId, commenceTime, homeTeam, awayTeam, bookmakers));
         }
 
         return potentialBets;
