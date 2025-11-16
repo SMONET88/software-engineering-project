@@ -97,7 +97,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
 
     return {
       gameId: game.id,
-      BetType: objBetType,
+      type: objBetType,
       team: betTeam,
       odds:
         betTeam === game.home_team
@@ -109,7 +109,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     };
   };
 
-  const onClickHandle = (teamName, gameId) => {
+  const onClickHandle = async (teamName, gameId) => {
     console.log(`xxx ${gameId}`);
     setBetTeam(teamName);
 
@@ -119,7 +119,21 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
       addProfit(awayProfit);
     }
 
-    setUserObj(createUserObj(teamName, homeBetInput, awayBetInput));
+    const objForBackend = createUserObj(teamName, homeBetInput, awayBetInput);
+    console.log(`user object before fetch: ${JSON.stringify(userObj)}`);
+    
+    const response = await fetch(`http://localhost:8080/submit-bet`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify(objForBackend),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to place bet');
+    }
   };
 
   useEffect(() => {
