@@ -6,6 +6,12 @@ import { useState } from "react";
 export const GameList2 = () => {
   const [betType, setBetType] = useState("Moneyline");
   
+  const [totalProfit, setTotalProfit] = useState([]);
+ 
+   const addProfit = (newProfitAddition) => {
+     setTotalProfit((prev) => [...prev, newProfitAddition]);
+   };
+  
 
 
   const formatTime = (time) => {
@@ -30,12 +36,12 @@ export const GameList2 = () => {
 
       <div className="tables">
         {sample_data.map((game) => (
-          <BetTable key={game.id} game={game} formatTime={formatTime} betType={betType} />
+          <BetTable key={game.id} game={game} formatTime={formatTime} betType={betType} addProfit={addProfit} />
         ))}
       </div>
 
       {/* //ADD TOOLTIPS */}
-  
+   <div>Total Profit: {totalProfit.reduce((a, b) => a + b, 0).toFixed(2)}</div>
     </div>
 
 

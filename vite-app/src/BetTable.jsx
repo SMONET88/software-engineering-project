@@ -2,19 +2,17 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import sample_data from "./sampleData";
 
-const BetTable = ({ game, formatTime, betType }) => {
+const BetTable = ({ game, formatTime, betType, addProfit }) => {
   const [betTeam, setBetTeam] = useState("");
   const [disabledGame, setDisabledGame] = useState(game.id);
   const [showTotalTable, setShowTotalTable] = useState(false);
   const [homeBetInput, setHomeBetInput] = useState("");
   const [awayBetInput, setAwayBetInput] = useState("");
   const [tableOdds, setTableOdds] = useState("");
-  const [totalProfit, setTotalProfit] = useState([]);
+  const [userObj, setUserObj] = useState({});
 
-  // immutable update
-  const addProfit = (newProfitAddition) => {
-    setTotalProfit((prev) => [...prev, newProfitAddition]);
-  };
+
+
 
   let oddsDictionary = {};
 
@@ -61,7 +59,6 @@ const BetTable = ({ game, formatTime, betType }) => {
       };
     });
   });
-  console.log(`HERE HER E88: ${betType}`);
 
   const profitCalculation = (betInput, odds) => {
     console.log(`team: ${betTeam}, odds: ${odds}`);
@@ -69,13 +66,50 @@ const BetTable = ({ game, formatTime, betType }) => {
     if (typeof bet !== "number" || isNaN(bet)) {
       return 0;
     } else if (odds === 100) {
-      return bet * 2;
+      return Number(bet * 2);
     } else if (odds > 0) {
-      return ((odds / 100) * bet).toFixed(2);
+      return Number(((odds / 100) * bet).toFixed(2));
     } else if (odds < 0) {
-      return ((100 / Math.abs(odds)) * bet).toFixed(2);
+      return Number(((100 / Math.abs(odds)) * bet).toFixed(2));
     }
   };
+
+  const createUserObj = (betTeam, homeBetInput, awayBetInput) => {
+    let lineUpdated = "";
+    let isOver = false;
+    let objBetType = '';
+    if (betType === "Win Bet (moneyline)") {
+      objBetType = 'H2H';
+      lineUpdated = null;
+      isOver = null;
+    } else if (betType === "Totals (over/under)") {
+      objBetType = 'TOTAL';
+      lineUpdated = oddsDictionary[game.away_team].totalLineOver;
+      isOver = betTeam === game.home_team ? true : false;
+    } else if (betType === "Win By (spread)" && betTeam === game.home_team) {
+      objBetType = 'SPREAD';
+      lineUpdated = oddsDictionary[game.home_team].spreadLine;
+      isOver = null;
+    } else if (betType === "Win By (spread)" && betTeam === game.away_team) {
+       objBetType = 'SPREAD';
+      lineUpdated = oddsDictionary[game.away_team].spreadLine;
+      isOver = null;
+    }
+
+    return {
+      gameId: game.id,
+      BetType: objBetType,
+      team: betTeam,
+      odds: betTeam === game.home_team
+        ? oddsDictionary[game.home_team][tableOdds]
+        : oddsDictionary[game.away_team][tableOdds],
+      line: lineUpdated,
+      isOver: isOver,
+      amount: betTeam === game.home_team ? homeBetInput : awayBetInput,
+    }
+};
+
+
 
   const onClickHandle = (teamName, gameId) => {
     console.log(`xxx ${gameId}`);
@@ -87,15 +121,9 @@ const BetTable = ({ game, formatTime, betType }) => {
     } else if (teamName === game.away_team) {
       addProfit(awayProfit);
     }
-    // const userBet = {
-    //   gameId: game.id,
-    //   BetType: betType,
-    //   team: teamName,
-    //   line: odds,
-    //   isOver: true,
-    //   amount: betInput,
-    // };
-    console.log(`total prof ${totalProfit}`);
+    
+    setUserObj(createUserObj(teamName, homeBetInput, awayBetInput));
+
   };
 
   useEffect(() => {
@@ -118,13 +146,17 @@ const BetTable = ({ game, formatTime, betType }) => {
   }, [betType]);
 
   const homeProfit = profitCalculation(
-    homeBetInput,
+    Number(homeBetInput),
     oddsDictionary[game.home_team][tableOdds],
   );
   const awayProfit = profitCalculation(
-    awayBetInput,
+    Number(awayBetInput),
     oddsDictionary[game.away_team][tableOdds],
   );
+  
+  console.log(`user object: ${JSON.stringify(userObj)}`);
+
+
 
   return (
     <>
