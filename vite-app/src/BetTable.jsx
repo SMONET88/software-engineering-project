@@ -111,7 +111,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
 
 
 
-  const onClickHandle = (teamName, gameId) => {
+  const onClickHandle = async (teamName, gameId) => {
     console.log(`xxx ${gameId}`);
     setBetTeam(teamName);
     setDisabledGame(gameId);
@@ -123,6 +123,21 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     }
     
     setUserObj(createUserObj(teamName, homeBetInput, awayBetInput));
+    
+    const response = await fetch(``, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        team: teamName,
+        amount: betTeam === game.home_team ? homeBetInput : awayBetInput,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to place bet');
+    }
 
   };
 
