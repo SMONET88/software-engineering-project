@@ -43,6 +43,7 @@ public class BetController {
         System.out.println("Received bet: " + bet);
         // Set status to PENDING automatically
         bet.setStatus("PENDING");
+        System.out.println("Bet after setting status: " + bet);
         // STORE BET IN DATABASE
         return bet;
     }
