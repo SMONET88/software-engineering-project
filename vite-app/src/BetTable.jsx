@@ -60,7 +60,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     });
   });
 
-  const profitCalculation = (betInput, odds) => {
+  const profitCalculation = async (betInput, odds) => {
     console.log(`team: ${betTeam}, odds: ${odds}`);
     const bet = Number(betInput);
     if (typeof bet !== "number" || isNaN(bet)) {
@@ -113,7 +113,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
 
   const onClickHandle = async (teamName, gameId) => {
     console.log(`xxx ${gameId}`);
-    setBetTeam(teamName);
+    awaitsetBetTeam(teamName);
     setDisabledGame(gameId);
 
     if (teamName === game.home_team) {
@@ -123,16 +123,15 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     }
     
     setUserObj(createUserObj(teamName, homeBetInput, awayBetInput));
+    console.log(`user object before fetch: ${JSON.stringify(userObj)}`);
     
-    const response = await fetch(``, {
+    const response = await fetch(`http://localhost:8080/submit-bet`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify({
-        team: teamName,
-        amount: betTeam === game.home_team ? homeBetInput : awayBetInput,
-      }),
+      body: JSON.stringify(userObj),
     });
 
     if (!response.ok) {
