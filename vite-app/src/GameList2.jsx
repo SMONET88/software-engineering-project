@@ -3,49 +3,48 @@ import sample_data from "./sampleData";
 import BetTable from "./BetTable";
 import { useState } from "react";
 
-export const GameList2 = () => {
-  const [betType, setBetType] = useState("Moneyline");
-  
-  const [totalProfit, setTotalProfit] = useState([]);
- 
-   const addProfit = (newProfitAddition) => {
-     setTotalProfit((prev) => [...prev, newProfitAddition]);
-   };
-  
 
+export const GameList2 = ({addProfit}) => {
+  const [betType, setBetType] = useState("Moneyline");
 
   const formatTime = (time) => {
     const date = new Date(time);
     const hours = date.getHours();
     const minutes = date.getMinutes().toString().padStart(2, "0");
     const ampm = hours >= 12 ? "pm" : "am";
-    return `${date.getMonth() + 1}/${date.getDate()}, ${hours % 12 || 12
-      }:${minutes}${ampm}`;
+    return `${date.getMonth() + 1}/${date.getDate()}, ${
+      hours % 12 || 12
+    }:${minutes}${ampm}`;
   };
 
-  
-
   return (
-
     <div className="layout">
       <div className="bet-type-buttons">
-        <button onClick={() => setBetType("Win Bet (moneyline)")}>Win Bet (moneyline)</button>
-        <button onClick={() => setBetType("Win By (spread)")}>Win By (spread)</button>
-        <button onClick={() => setBetType("Totals (over/under)")}>Totals (over/under)</button>
+        <button onClick={() => setBetType("Win Bet (moneyline)")}>
+          Win Bet (moneyline)
+        </button>
+        <button onClick={() => setBetType("Win By (spread)")}>
+          Win By (spread)
+        </button>
+        <button onClick={() => setBetType("Totals (over/under)")}>
+          Totals (over/under)
+        </button>
       </div>
 
       <div className="tables">
         {sample_data.map((game) => (
-          <BetTable key={game.id} game={game} formatTime={formatTime} betType={betType} addProfit={addProfit} />
+          <BetTable
+            key={game.id}
+            game={game}
+            formatTime={formatTime}
+            betType={betType}
+            addProfit={addProfit}
+          />
         ))}
       </div>
 
       {/* //ADD TOOLTIPS */}
-   <div>Total Profit: {totalProfit.reduce((a, b) => a + b, 0).toFixed(2)}</div>
+     
     </div>
-
-
-  )
-
-
+  );
 };

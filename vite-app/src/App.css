@@ -17,13 +17,12 @@ td {
 }
 
 .rounded-div {
-  display: flex;
-  justify-content: center; /* center the table inside */
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 15px;
-  margin: 20px 0;
+  margin: 20px auto;   /* center the whole container */
   background-color: #f9f9f9;
+  width: fit-content;  /* shrink to table size */
 }
 
 
@@ -38,4 +37,6 @@ td {
   flex-direction: column;   /* stack buttons vertically */
   align-items: flex-start;  /* align buttons to the left */
 }
+
+
 

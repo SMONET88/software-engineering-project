@@ -61,6 +61,7 @@ button {
   background-color: #150145;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 5px;   /* ✅ adds space around each button */
 }
 button:hover {
   border-color: white;
