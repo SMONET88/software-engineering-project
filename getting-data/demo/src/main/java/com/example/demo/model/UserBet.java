@@ -1,35 +1,54 @@
 package com.example.demo.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "user_bets")
 public class UserBet {
 
     public enum BetType {
         H2H, SPREAD, TOTAL
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // primary key
+
+    @Column(nullable = false)
     private String gameId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private BetType type;
 
     // The team the user is betting on (null for TOTAL bets)
+    @Column(nullable = true)
     private String team;
 
     // The line (point, spread, total, etc.)
+    @Column(nullable = true)
     private Double line;
 
     // The odds for payout calculation (American odds)
+    @Column(nullable = false)
     private Double odds;
 
     // Only used for TOTAL bets to indicate over/under
+    @Column(nullable = true)
     private Boolean isOver;
 
-    private String status; // "PENDING", "WIN", "LOSS"
+    @Column(nullable = false)
+    private String status = "PENDING"; // "PENDING", "WIN", "LOSS"
 
+    @Column(nullable = false)
     private Double amount;
 
-    // Default constructor
+    // Default constructor (required by JPA)
     public UserBet() {}
 
     // Full constructor
-    public UserBet(String gameId, int userId, BetType type, String team, Double line, Double odds, Boolean isOver, double amount) {
+    public UserBet(String gameId, BetType type, String team, Double line,
+                   Double odds, Boolean isOver, double amount) {
         this.gameId = gameId;
         this.type = type;
         this.team = team;
@@ -40,80 +59,47 @@ public class UserBet {
         this.status = "PENDING";
     }
 
-    // Getters and Setters
-    public String getGameId() {
-        return gameId;
-    }
+    // Getters and setters
 
-    public void setGameId(String gameId) {
-        this.gameId = gameId;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public BetType getType() {
-        return type;
-    }
+    public String getGameId() { return gameId; }
+    public void setGameId(String gameId) { this.gameId = gameId; }
 
-    public void setType(BetType type) {
-        this.type = type;
-    }
+    public BetType getType() { return type; }
+    public void setType(BetType type) { this.type = type; }
 
-    public String getTeam() {
-        return team;
-    }
+    public String getTeam() { return team; }
+    public void setTeam(String team) { this.team = team; }
 
-    public void setTeam(String team) {
-        this.team = team;
-    }
+    public Double getLine() { return line; }
+    public void setLine(Double line) { this.line = line; }
 
-    public Double getLine() {
-        return line;
-    }
+    public Double getOdds() { return odds; }
+    public void setOdds(Double odds) { this.odds = odds; }
 
-    public void setLine(Double line) {
-        this.line = line;
-    }
+    public Boolean getIsOver() { return isOver; }
+    public void setIsOver(Boolean isOver) { this.isOver = isOver; }
 
-    public Double getOdds() {
-        return odds;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setOdds(Double odds) {
-        this.odds = odds;
-    }
-
-    public Boolean getIsOver() {
-        return isOver;
-    }
-
-    public void setIsOver(Boolean isOver) {
-        this.isOver = isOver;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+    public Double getAmount() { return amount; }
+    public void setAmount(Double amount) { this.amount = amount; }
 
     @Override
     public String toString() {
         return "UserBet{" +
-                "gameId='" + gameId + '\'' +
+                "id=" + id +
+                ", gameId='" + gameId + '\'' +
                 ", type=" + type +
                 ", team='" + team + '\'' +
                 ", line=" + line +
                 ", odds=" + odds +
                 ", isOver=" + isOver +
+                ", status='" + status + '\'' +
+                ", amount=" + amount +
                 '}';
     }
 }
