@@ -60,7 +60,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     });
   });
 
-  const profitCalculation = async (betInput, odds) => {
+  const profitCalculation = (betInput, odds) => {
     console.log(`team: ${betTeam}, odds: ${odds}`);
     const bet = Number(betInput);
     if (typeof bet !== "number" || isNaN(bet)) {
@@ -98,7 +98,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
 
     return {
       gameId: game.id,
-      BetType: objBetType,
+      type: objBetType,
       team: betTeam,
       odds: betTeam === game.home_team
         ? oddsDictionary[game.home_team][tableOdds]
@@ -113,7 +113,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
 
   const onClickHandle = async (teamName, gameId) => {
     console.log(`xxx ${gameId}`);
-    awaitsetBetTeam(teamName);
+    setBetTeam(teamName);
     setDisabledGame(gameId);
 
     if (teamName === game.home_team) {
@@ -122,7 +122,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
       addProfit(awayProfit);
     }
     
-    setUserObj(createUserObj(teamName, homeBetInput, awayBetInput));
+    const objForBackend = createUserObj(teamName, homeBetInput, awayBetInput);
     console.log(`user object before fetch: ${JSON.stringify(userObj)}`);
     
     const response = await fetch(`http://localhost:8080/submit-bet`, {
@@ -131,7 +131,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify(userObj),
+      body: JSON.stringify(objForBackend),
     });
 
     if (!response.ok) {
