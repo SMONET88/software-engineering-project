@@ -1,42 +1,36 @@
 table {
-  margin: 0 auto;           /* classic way to center block elements */
-  border-collapse: collapse;
+    margin: 0 auto; /* classic way to center block elements */
+    border-collapse: collapse;
 }
 
 .tables {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* center group of tables */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center group of tables */
 }
 
 th,
 td {
-  vertical-align: middle;
-  text-align: center;
-  padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px;
 }
 
 .rounded-div {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 20px auto;   /* center the whole container */
-  background-color: #f9f9f9;
-  width: fit-content;  /* shrink to table size */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
 }
 
-
- .layout {
-  display: flex;            /* side-by-side layout */
-  align-items: flex-start;  /* align tops */
-  gap: 20px;                /* spacing between tables and buttons */
+.layout {
+    display: flex; /* side-by-side layout */
+    align-items: flex-start; /* align tops */
+    gap: 20px; /* spacing between tables and buttons */
 }
 
 .bet-type-buttons {
-  display: flex;
-  flex-direction: column;   /* stack buttons vertically */
-  align-items: flex-start;  /* align buttons to the left */
+    display: flex;
+    flex-direction: column; /* stack buttons vertically */
+    align-items: flex-start; /* align buttons to the left */
 }
-
-
-

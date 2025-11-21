@@ -2,9 +2,9 @@ import "./App.css";
 import sample_data from "./sampleData";
 import BetTable from "./BetTable";
 import { useState } from "react";
+import { Button, Box } from "@mui/material";
 
-
-export const GameList2 = ({addProfit}) => {
+export const GameList2 = ({ addProfit }) => {
   const [betType, setBetType] = useState("Moneyline");
 
   const formatTime = (time) => {
@@ -18,20 +18,55 @@ export const GameList2 = ({addProfit}) => {
   };
 
   return (
-    <div className="layout">
-      <div className="bet-type-buttons">
-        <button onClick={() => setBetType("Win Bet (moneyline)")}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row", // side-by-side layout
+        alignItems: "flex-start",
+        width: "100%",
+        minHeight: "80vh", // optional: give it height
+        gap: 4, // spacing between columns
+      }}
+    >
+      {/* Left column: buttons */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          alignItems: "flex-start",
+          flex: "0 0 200px", 
+        }}
+      >
+        <Button
+          variant={betType === "Win Bet (moneyline)" ? "contained" : "outlined"}
+          onClick={() => setBetType("Win Bet (moneyline)")}
+        >
           Win Bet (moneyline)
-        </button>
-        <button onClick={() => setBetType("Win By (spread)")}>
+        </Button>
+        <Button
+          variant={betType === "Win By (spread)" ? "contained" : "outlined"}
+          onClick={() => setBetType("Win By (spread)")}
+        >
           Win By (spread)
-        </button>
-        <button onClick={() => setBetType("Totals (over/under)")}>
+        </Button>
+        <Button
+          variant={betType === "Totals (over/under)" ? "contained" : "outlined"}
+          onClick={() => setBetType("Totals (over/under)")}
+        >
           Totals (over/under)
-        </button>
-      </div>
+        </Button>
+      </Box>
 
-      <div className="tables">
+      {/* Right column: tables */}
+      <Box
+        sx={{
+          display: "flex",
+          flex: 1, // take remaining space
+          justifyContent: "center", // center horizontally
+          alignItems: "flex-start", // align to top
+        }}
+      >
         {sample_data.map((game) => (
           <BetTable
             key={game.id}
@@ -41,10 +76,7 @@ export const GameList2 = ({addProfit}) => {
             addProfit={addProfit}
           />
         ))}
-      </div>
-
-      {/* //ADD TOOLTIPS */}
-     
-    </div>
+      </Box>
+    </Box>
   );
 };
