@@ -1,9 +1,10 @@
 package com.example.demo.model;
 
+import java.util.UUID;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_bets")
+@Table(name = "bets")
 public class UserBet {
 
     public enum BetType {
@@ -14,7 +15,7 @@ public class UserBet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // primary key
 
-    @Column(nullable = false)
+    @Column(name = "\"gameId\"", nullable = false)
     private String gameId;
 
     @Enumerated(EnumType.STRING)
@@ -43,12 +44,15 @@ public class UserBet {
     @Column(nullable = false)
     private Double amount;
 
-    // Default constructor (required by JPA)
+    @Column(nullable = false, columnDefinition = "uuid")
+    private UUID userId;
+
+    // Default constructor
     public UserBet() {}
 
     // Full constructor
     public UserBet(String gameId, BetType type, String team, Double line,
-                   Double odds, Boolean isOver, double amount) {
+                   Double odds, Boolean isOver, double amount, UUID userId) {
         this.gameId = gameId;
         this.type = type;
         this.team = team;
@@ -57,10 +61,10 @@ public class UserBet {
         this.isOver = isOver;
         this.amount = amount;
         this.status = "PENDING";
+        this.userId = userId;
     }
 
     // Getters and setters
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -88,6 +92,9 @@ public class UserBet {
     public Double getAmount() { return amount; }
     public void setAmount(Double amount) { this.amount = amount; }
 
+    public UUID getUserId() { return userId; }
+    public void setUserId(UUID userId) { this.userId = userId; }
+
     @Override
     public String toString() {
         return "UserBet{" +
@@ -100,6 +107,7 @@ public class UserBet {
                 ", isOver=" + isOver +
                 ", status='" + status + '\'' +
                 ", amount=" + amount +
+                ", userId=" + userId +
                 '}';
     }
 }
