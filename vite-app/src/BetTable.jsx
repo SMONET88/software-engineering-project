@@ -1,7 +1,17 @@
-import "./App.css";
 import { useState, useEffect } from "react";
 import sample_data from "./sampleData";
-import Tooltip from "@mui/material/Tooltip";
+import {
+  Box,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Tooltip,
+  TextField,
+  Button,
+  Typography,
+} from "@mui/material";
 
 const BetTable = ({ game, formatTime, betType, addProfit }) => {
   const [betTeam, setBetTeam] = useState("");
@@ -121,18 +131,18 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
 
     const objForBackend = createUserObj(teamName, homeBetInput, awayBetInput);
     console.log(`user object before fetch: ${JSON.stringify(userObj)}`);
-    
+
     const response = await fetch(`http://localhost:8080/submit-bet`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(objForBackend),
     });
 
     if (!response.ok) {
-      throw new Error('Failed to place bet');
+      throw new Error("Failed to place bet");
     }
   };
 
@@ -177,255 +187,251 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
   console.log(`user object: ${JSON.stringify(userObj)}`);
 
   return (
-    <div className="tables">
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
       {showH2HTable ? (
-        <div key={game.id} className="rounded-div">
-          <table>
-            <thead>
-              <tr>
-                <th>{formatTime(game.commence_time)}</th>
-                <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  title={ttDescription}
-                >
-                  <th>{betType} Bet</th>
-                </Tooltip>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Home team row */}
-              <tr>
-                <td style={{ fontWeight: "bold" }}>{game.home_team}</td>
-                <td>
-                  <div
-                    className="table-data"
-                    style={{
-                      display: "flex",
-                      gap: "8px",
-                      alignItems: "center",
-                    }}
+        <Box key={game.id} sx={{ borderRadius: 2, p: 2, boxShadow: 2 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>{formatTime(game.commence_time)}</TableCell>
+                <TableCell>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title={ttDescription}
                   >
-                    <input
-                      type="text"
-                      className="input"
+                    <Typography>{betType} Bet</Typography>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* Home team row */}
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  {game.home_team}
+                </TableCell>
+                <TableCell>
+                  <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                    <TextField
+                      size="small"
                       value={homeBetInput}
                       onChange={(e) => setHomeBetInput(e.target.value)}
                     />
-                    <button
-                      className="betButton"
+                    <Button
+                      variant="contained"
                       onClick={() => onClickHandle(game.home_team, game.id)}
                     >
                       Place
-                    </button>
-                  </div>
-                  <div className="box">{homeProfit}</div>
-                </td>
-              </tr>
+                    </Button>
+                  </Box>
+                  <Box sx={{ mt: 1 }}>{homeProfit}</Box>
+                </TableCell>
+              </TableRow>
 
               {/* Away team row */}
-              <tr>
-                <td style={{ fontWeight: "bold" }}>{game.away_team}</td>
-                <td>
-                  <div
-                    className="table-data"
-                    style={{
-                      display: "flex",
-                      gap: "8px",
-                      alignItems: "center",
-                    }}
-                  >
-                    <input
-                      type="text"
-                      className="input"
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  {game.away_team}
+                </TableCell>
+                <TableCell>
+                  <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                    <TextField
+                      size="small"
                       value={awayBetInput}
                       onChange={(e) => setAwayBetInput(e.target.value)}
                     />
-                    <button
-                      className="betButton"
+                    <Button
+                      variant="contained"
                       onClick={() => onClickHandle(game.away_team, game.id)}
                     >
                       Place
-                    </button>
-                  </div>
-                  <div className="box">{awayProfit}</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h2>{`You bet on ${betTeam}`}</h2>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      ) : showTotalTable ? (
-        <div key={game.id} className="rounded-div">
-          <table>
-            <thead>
-              <tr>
-                <th>{formatTime(game.commence_time)}</th>
-                <Tooltip
-                  disableFocusListener
-                  disableTouchListener
-                  title={ttDescription}
-                >
-                  <th>{betType} Bet</th>
-                </Tooltip>
-              </tr>
-            </thead>
-            <td style={{ fontWeight: "bold" }}>{game.home_team}</td>
-            <td>Over</td>
-            <td>
-              <div
-                className="table-data"
-                style={{
-                  display: "flex",
-                  gap: "8px",
-                  alignItems: "center",
-                }}
-              >
-                <input
-                  type="text"
-                  className="input"
-                  value={homeBetInput}
-                  onChange={(e) => setHomeBetInput(e.target.value)}
-                />
-                <button
-                  className="betButton"
-                  onClick={() => onClickHandle(game.home_team, game.id)}
-                >
-                  Place
-                </button>
-              </div>
-              <div className="box">{homeProfit}</div>
-            </td>
-            <tr>
-              <td>vs. </td>
-              <td>{game.bookmakers[0].markets[2].outcomes[0].point}</td>
-            </tr>
-            <tr>
-              <td style={{ fontWeight: "bold" }}>{game.away_team}</td>
-              <td>Under</td>
-              <td>
-                <div
-                  className="table-data"
-                  style={{
-                    display: "flex",
-                    gap: "8px",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="input"
-                    value={awayBetInput}
-                    onChange={(e) => setAwayBetInput(e.target.value)}
-                  />
-                  <button
-                    className="betButton"
-                    onClick={() => onClickHandle(game.away_team, game.id)}
-                  >
-                    Place
-                  </button>
-                </div>
-                <div className="box">{awayProfit}</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h2>{`You bet on ${betTeam}`}</h2>
-              </td>
-            </tr>
-          </table>
-        </div>
-      ) : (
-        <table className="rounded-div">
-          <thead>
-            <tr>
-              <th>{formatTime(game.commence_time)}</th>
-              <Tooltip
-                disableFocusListener
-                disableTouchListener
-                title={ttDescription}
-              >
-                <th>{betType} Bet</th>
-              </Tooltip>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Home team row */}
-            <tr>
-              <td style={{ fontWeight: "bold" }}>{game.home_team}</td>
-              <td>
-                <div
-                  className="table-data"
-                  style={{
-                    display: "flex",
-                    gap: "8px",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="input"
-                    value={homeBetInput}
-                    onChange={(e) => setHomeBetInput(e.target.value)}
-                  />
-                  <button
-                    className="betButton"
-                    onClick={() => onClickHandle(game.home_team, game.id)}
-                  >
-                    Place
-                  </button>
-                </div>
-                <div className="box">{homeProfit}</div>
-              </td>
-            </tr>
-            <tr>
-              <td>Line: {oddsDictionary[game.home_team].spreadLine}</td>
-            </tr>
+                    </Button>
+                  </Box>
+                  <Box sx={{ mt: 1 }}>{awayProfit}</Box>
+                </TableCell>
+              </TableRow>
 
-            {/* Away team row */}
-            <tr>
-              <td style={{ fontWeight: "bold" }}>{game.away_team}</td>
-              <td>
-                <div
-                  className="table-data"
-                  style={{
-                    display: "flex",
-                    gap: "8px",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    type="text"
-                    className="input"
-                    value={awayBetInput}
-                    onChange={(e) => setAwayBetInput(e.target.value)}
-                  />
-                  <button
-                    className="betButton"
-                    onClick={() => onClickHandle(game.away_team, game.id)}
+              <TableRow>
+                <TableCell colSpan={2}>
+                  <Typography variant="h6">{`You bet on ${betTeam}`}</Typography>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Box>
+      ) : showTotalTable ? (
+        <Box key={game.id} sx={{ borderRadius: 2, p: 2, boxShadow: 2 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>{formatTime(game.commence_time)}</TableCell>
+                <TableCell>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title={ttDescription}
                   >
-                    Place
-                  </button>
-                </div>
-                <div className="box">{awayProfit}</div>
-              </td>
-            </tr>
-            <tr>
-              <td>Line: {oddsDictionary[game.away_team].spreadLine}</td>
-            </tr>
-            <tr>
-              <td>
-                <h2>{`You bet on ${betTeam}`}</h2>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                    <Typography>{betType} Bet</Typography>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* Home team row */}
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  {game.home_team}
+                </TableCell>
+                <TableCell>
+                  <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                    <TextField
+                      size="small"
+                      value={homeBetInput}
+                      onChange={(e) => setHomeBetInput(e.target.value)}
+                    />
+                    <Button
+                      variant="contained"
+                      onClick={() => onClickHandle(game.home_team, game.id)}
+                    >
+                      Place
+                    </Button>
+                  </Box>
+                  <Box sx={{ mt: 1 }}>{homeProfit}</Box>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                {" "}
+                <TableCell>vs. </TableCell>
+                <TableCell>
+                  {game.bookmakers[0].markets[2].outcomes[0].point}
+                </TableCell>
+              </TableRow>
+
+              {/* Away team row */}
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  {game.away_team}
+                </TableCell>
+                <TableCell>
+                  <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                    <TextField
+                      size="small"
+                      value={awayBetInput}
+                      onChange={(e) => setAwayBetInput(e.target.value)}
+                    />
+                    <Button
+                      variant="contained"
+                      onClick={() => onClickHandle(game.away_team, game.id)}
+                    >
+                      Place
+                    </Button>
+                  </Box>
+                  <Box sx={{ mt: 1 }}>{awayProfit}</Box>
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell colSpan={2}>
+                  <Typography variant="h6">{`You bet on ${betTeam}`}</Typography>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Box>
+      ) : (
+        // And again for the fallback branch
+        <Box sx={{ borderRadius: 2, p: 2, boxShadow: 2 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>{formatTime(game.commence_time)}</TableCell>
+                <TableCell>
+                  <Tooltip
+                    disableFocusListener
+                    disableTouchListener
+                    title={ttDescription}
+                  >
+                    <Typography>{betType} Bet</Typography>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* Home team row */}
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  {game.home_team}
+                </TableCell>
+                <TableCell>
+                  <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                    <TextField
+                      size="small"
+                      value={homeBetInput}
+                      onChange={(e) => setHomeBetInput(e.target.value)}
+                    />
+                    <Button
+                      variant="contained"
+                      onClick={() => onClickHandle(game.home_team, game.id)}
+                    >
+                      Place
+                    </Button>
+                  </Box>
+                  <Box sx={{ mt: 1 }}>{homeProfit}</Box>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Line: {oddsDictionary[game.home_team].spreadLine}
+                </TableCell>
+              </TableRow>
+
+              {/* Away team row */}
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  {game.away_team}
+                </TableCell>
+                <TableCell>
+                  <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                    <TextField
+                      size="small"
+                      value={awayBetInput}
+                      onChange={(e) => setAwayBetInput(e.target.value)}
+                    />
+                    <Button
+                      variant="contained"
+                      onClick={() => onClickHandle(game.away_team, game.id)}
+                    >
+                      Place
+                    </Button>
+                  </Box>
+                  <Box sx={{ mt: 1 }}>{awayProfit}</Box>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Line: {oddsDictionary[game.away_team].spreadLine}
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell colSpan={2}>
+                  <Typography variant="h6">{`You bet on ${betTeam}`}</Typography>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 
