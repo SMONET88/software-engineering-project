@@ -42,7 +42,7 @@ public class BetController {
     @GetMapping("/user-bets")
     public List<UserBet> getUserBets(@RequestParam UUID userId) {
         // Fetch all pending bets for that user
-        return userBetRepository.findByUserIdALL(userId);
+        return userBetRepository.findByUserId(userId);
     }
 
     @GetMapping("/user-balance")
@@ -63,7 +63,7 @@ public class BetController {
         // Set status to PENDING automatically
         bet.setStatus("PENDING");
         // hard code userId until auth is set up
-        bet.setUserId(UUID.fromString("41f9f48c-bd25-4b9b-8793-70cb381dc29a"));
+        bet.setUserId(UUID.fromString("23116ad0-a28d-4a8b-bd2e-aca8f63f5118"));
         // STORE BET IN DATABASE
         UserBet savedBet = userBetRepository.save(bet);
         System.out.println("Saved bet: " + savedBet);

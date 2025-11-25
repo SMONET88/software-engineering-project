@@ -15,7 +15,7 @@ public interface UserBetRepository extends JpaRepository<UserBet, Long> {
     List<UserBet> findByUserIdAndStatus(UUID userId, String status);
 
     // find all bets given a userId
-    List<UserBet> findByUserIdALL(UUID userID);
+    List<UserBet> findByUserId(UUID userID);
 
     // find all pending bets created after a given date (for last week’s bets)
     List<UserBet> findByUserIdAndStatusAndCreatedAtAfter(UUID userId, String status, LocalDateTime createdAt);
