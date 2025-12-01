@@ -7,7 +7,7 @@ Our goal is to make sports betting **accessible**, **educational**, and **fun**.
 
 ## Key Features
 - **Virtual Currency (Acorns):** Bet freely without real financial consequences.  
-- **Beginner-Friendly Design:** No prior betting experience needed—learn as you play.  
-- **Fun & Low-Pressure Experience:** Encourages fun rather than high-stakes gambling.  
+- **Beginner-Friendly Design:** No prior betting experience needed! 
+- **Fun & Low-Pressure Experience:** Encourages fun rather than high stakes gambling.  
 - **Simple, Usable Interface:** Built with clarity and accessibility in mind.  
 
