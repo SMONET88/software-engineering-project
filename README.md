@@ -1,5 +1,3 @@
-# Acorn Sports Betting 🌰
-
 # 🌰 Acorn Sports Betting
 *A beginner friendly, fun sports betting app*
 
