@@ -1,6 +1,8 @@
 //import "./index.css";
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { useNavigate } from "react-router-dom";
+import { Typography, Box } from "@mui/material";
 
 export const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -44,6 +46,12 @@ export default function Login() {
   const [authError, setAuthError] = useState(null);
   const [authSuccess, setAuthSuccess] = useState(false);
   const [userId, setUserId] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/loggedIn");
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -116,7 +124,6 @@ export default function Login() {
           {
             id: session.user.id,
             email: session.user.email,
-            username: "default_username",
             balance: 1000,
           },
         ]);
@@ -127,7 +134,7 @@ export default function Login() {
         }
       };
       // const getUserId = async
-      insertUser(); // no await here, just fire and forget
+      insertUser();
     }
   }, [session]);
 
@@ -154,10 +161,20 @@ export default function Login() {
   }
 
   return (
-    <div>
-      <h1>Welcome!</h1>
-      <p>You are logged in as: {session.user.email}</p>
-      <button onClick={handleLogout}>Sign Out</button>
-    </div>
+    <Box  sx={{
+       display: "flex",
+       flexDirection: "column",   // stack items vertically
+       alignItems: "center",      // center horizontally
+       justifyContent: "center",  // center vertically
+       minHeight: "100vh",        // take full viewport height
+       textAlign: "center",       // center text inside elements
+     }}>
+      <div>
+        <h1>Welcome!</h1>
+        <Typography>You are logged in as: {session.user.email}</Typography>
+        <button onClick={handleClick}>Click to acess App</button>
+        <button onClick={handleLogout}>Sign Out</button>
+      </div>
+    </Box>
   );
 }
