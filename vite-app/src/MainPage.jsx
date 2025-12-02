@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GameList2 } from "./GameList2";
-import sample_data from "./sampleData";
+
 import { Box, Typography } from "@mui/material";
 
 
@@ -39,7 +39,7 @@ const MainPage = () => {
 
       {/* Tables */}
       <Box>
-        <GameList2 games={sample_data} addProfit={addProfit} />
+        <GameList2 addProfit={addProfit} />
       </Box>
     </>
   );

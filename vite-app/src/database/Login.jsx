@@ -45,7 +45,6 @@ export default function Login() {
   const [verifying, setVerifying] = useState(!!hasTokenHash);
   const [authError, setAuthError] = useState(null);
   const [authSuccess, setAuthSuccess] = useState(false);
-  const [userId, setUserId] = useState(null);
 
   const navigate = useNavigate();
 
