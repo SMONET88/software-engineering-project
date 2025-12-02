@@ -136,8 +136,8 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
       addProfit(awayProfit);
     }
 
-    const objForBackend = createUserObj(teamName, homeBetInput, awayBetInput);
-    console.log(`user object before fetch: ${JSON.stringify(userObj)}`);
+    const objForBackend = await createUserObj(teamName, homeBetInput, awayBetInput);
+    console.log(`USER OBJ XXXXXXXXXXXX: ${JSON.stringify(objForBackend)}`);
 
     const response = await fetch(`http://localhost:8080/submit-bet`, {
       method: "POST",

@@ -62,8 +62,6 @@ public class BetController {
         System.out.println("Received bet: " + bet);
         // Set status to PENDING automatically
         bet.setStatus("PENDING");
-        // hard code userId until auth is set up
-        bet.setUserId(UUID.fromString("23116ad0-a28d-4a8b-bd2e-aca8f63f5118"));
         // STORE BET IN DATABASE
         UserBet savedBet = userBetRepository.save(bet);
         System.out.println("Saved bet: " + savedBet);
