@@ -124,7 +124,7 @@ export default function Login() {
           {
             id: session.user.id,
             email: session.user.email,
-            balance: 1000,
+            balance: 100,
           },
         ]);
         if (error) {
@@ -161,7 +161,7 @@ export default function Login() {
   }
 
   return (
-    <Box  sx={{
+    <Box sx={{
        display: "flex",
        flexDirection: "column",   // stack items vertically
        alignItems: "center",      // center horizontally
@@ -172,7 +172,7 @@ export default function Login() {
       <div>
         <h1>Welcome!</h1>
         <Typography>You are logged in as: {session.user.email}</Typography>
-        <button onClick={handleClick}>Click to acess App</button>
+        <button onClick={handleClick}>Acess App</button>
         <button onClick={handleLogout}>Sign Out</button>
       </div>
     </Box>

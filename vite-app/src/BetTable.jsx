@@ -12,6 +12,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { supabase } from './database/Login';
 
 const BetTable = ({ game, formatTime, betType, addProfit }) => {
   const [betTeam, setBetTeam] = useState("");
@@ -83,7 +84,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     }
   };
 
-  const createUserObj = (betTeam, homeBetInput, awayBetInput) => {
+  const createUserObj = async (betTeam, homeBetInput, awayBetInput) => {
     let lineUpdated = "";
     let isOver = false;
     let objBetType = "";
@@ -105,8 +106,14 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
       isOver = null;
     }
 
+    const { data: { session } } = await supabase.auth.getSession();
+    const userId = session.user.id;
+    console.log(session.user.id);
+
+
     return {
       gameId: game.id,
+      userId: userId,
       type: objBetType,
       team: betTeam,
       odds:
