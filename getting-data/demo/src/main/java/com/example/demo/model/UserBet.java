@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.UUID;
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "bets")
@@ -46,6 +48,14 @@ public class UserBet {
 
     @Column(nullable = false, columnDefinition = "uuid")
     private UUID userId;
+    
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
     // Default constructor
     public UserBet() {}
