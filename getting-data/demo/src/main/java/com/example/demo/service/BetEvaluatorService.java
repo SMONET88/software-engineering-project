@@ -27,24 +27,30 @@ public class BetEvaluatorService {
         this.gameDataLoader = gameDataLoader;
     }
 
+    /**
+     * Verify all pending bets for a specific user.
+     * @param userId UUID of the user whose bets to evaluate
+     */
     public void verifyPendingBets(UUID userId) {
-        // get pending bets
+        // 1. Fetch pending bets from the database
         List<UserBet> pendingBets = userBetRepository.findByUserIdAndStatus(userId, "PENDING");
 
-        // get game results (last week)
+        // 2. Get the latest game results from the loader
         List<GameResult> gameResults = gameDataLoader.getGameResults();
 
         for (UserBet bet : pendingBets) {
-            // find game/bet pairs for matching gameId's
+            // 3. Find the matching game result
             GameResult result = findMatchingGameResult(bet, gameResults);
             if (result == null || !result.isCompleted()) continue; // skip if no result yet
 
+            // 4. Determine outcome
             String outcome = determineOutcome(bet, result);
 
-            // update bet status
+            // 5. Update bet status
             bet.setStatus(outcome);
             userBetRepository.save(bet);
 
+            // 6. Pay winnings if bet won
             if ("WIN".equals(outcome)) {
                 payOut(bet);
             }
@@ -89,12 +95,11 @@ public class BetEvaluatorService {
         return "LOSS";
     }
 
-    // update user balance in DB
     private void payOut(UserBet bet) {
         User user = userRepository.findById(bet.getUserId()).orElseThrow();
         double winnings = calculateWinnings(bet.getAmount(), bet.getOdds());
 
-        // round up to the nearest whole number
+        // Round up to the nearest whole number
         long roundedWinnings = (long) Math.ceil(winnings);
 
         user.setBalance(user.getBalance() + roundedWinnings);
@@ -102,6 +107,7 @@ public class BetEvaluatorService {
     }
 
     private double calculateWinnings(double amount, double odds) {
+        // Example for American odds format
         if (odds > 0) {
             return amount * (odds / 100.0);
         } else {
