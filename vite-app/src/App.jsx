@@ -2,11 +2,13 @@ import { useState } from "react";
 import { GameList2 } from "./GameList2";
 import sample_data from "./sampleData";
 import { Box, Typography } from "@mui/material";
+import Login, { supabase } from "./database/Login";
 
 function App() {
   const [money, setMoney] = useState(100);
-
   const [totalProfit, setTotalProfit] = useState(0);
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //
 
   const addProfit = (newProfitAddition) => {
     if (money - newProfitAddition < 0) {
@@ -17,8 +19,13 @@ function App() {
     }
   };
 
+
+
+
   return (
     <>
+      <Login />
+
       {/* Header */}
       <Box sx={{ textAlign: "center", mb: 2 }}>
         <Typography
