@@ -1,11 +1,13 @@
 import "./App.css";
 import sample_data from "./sampleData";
 import BetTable from "./BetTable";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Box } from "@mui/material";
+import { VerifyBet } from "./VerifyBet";
 
 export const GameList2 = ({ addProfit }) => {
   const [betType, setBetType] = useState("Moneyline");
+  const [verifyButton, setShowVerifyButton] = useState(false);
 
   const formatTime = (time) => {
     const date = new Date(time);
@@ -16,6 +18,26 @@ export const GameList2 = ({ addProfit }) => {
       hours % 12 || 12
     }:${minutes}${ampm}`;
   };
+  
+  const handleVerifyBet = () => {
+    <VerifyBet />
+    console.log("Bet verified");
+  };
+  
+  useEffect(() => {
+    const checkDate = async () => {
+    const today = new Date();
+    const weekday = 2 //today.getDay();
+      if (weekday === 2) {
+        setShowVerifyButton(true);
+        console.log("Today is Tuesday");
+      } else {
+        setShowVerifyButton(false);
+      }
+    };
+    checkDate();
+  }, []);
+
 
   return (
     <Box
@@ -23,9 +45,9 @@ export const GameList2 = ({ addProfit }) => {
         display: "flex",
         flexDirection: "row", // side-by-side layout
         alignItems: "flex-start",
-        width: "100%",
-        minHeight: "80vh", // optional: give it height
-        gap: 4, // spacing between columns
+        flex: "0 0 200px",
+        mt: 1,
+
       }}
     >
       {/* Left column: buttons */}
@@ -35,7 +57,7 @@ export const GameList2 = ({ addProfit }) => {
           flexDirection: "column",
           gap: 2,
           alignItems: "flex-start",
-          flex: "0 0 200px", 
+          flex: "0 0 200px",
         }}
       >
         <Button
@@ -56,6 +78,14 @@ export const GameList2 = ({ addProfit }) => {
         >
           Totals (over/under)
         </Button>
+        {verifyButton && (
+          <Button
+            variant={"contained"}
+            onClick={() => handleVerifyBet()}
+          >
+            Verify
+          </Button>
+        )}
       </Box>
 
       {/* Right column: tables */}

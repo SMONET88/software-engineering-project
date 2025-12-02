@@ -12,7 +12,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { supabase } from './database/Login';
+import { supabase } from "./database/Login";
 
 const BetTable = ({ game, formatTime, betType, addProfit }) => {
   const [betTeam, setBetTeam] = useState("");
@@ -104,13 +104,12 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
       objBetType = "SPREAD";
       lineUpdated = oddsDictionary[game.away_team].spreadLine;
       isOver = null;
-    }
+    };
 
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     const userId = session.user.id;
-    console.log(session.user.id);
-
-
     return {
       gameId: game.id,
       userId: userId,
@@ -138,7 +137,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
 
     const objForBackend = await createUserObj(teamName, homeBetInput, awayBetInput);
     console.log(`USER OBJ XXXXXXXXXXXX: ${JSON.stringify(objForBackend)}`);
-
+    
     const response = await fetch(`http://localhost:8080/submit-bet`, {
       method: "POST",
       headers: {
