@@ -11,3 +11,25 @@ Our goal is to make sports betting **accessible**, **educational**, and **fun**.
 - **Fun & Low-Pressure Experience:** Encourages fun rather than high stakes gambling.  
 - **Simple, Usable Interface:** Built with clarity and accessibility in mind.  
 
+## How to Run 🛠️
+
+Scurry Betting is currently set up for local development only. To get started:
+
+1. **Install dependencies**  
+   ```bash
+   npm install
+2. Start dev server (frontend)
+   ```bash
+   cd vite-app
+   npm run dev
+3. Start dev server (backend)
+   ```bash
+   cd getting-data
+   ./mvnw clean spring-boot:run
+4. Log in with Supabase
+  Enter your email address into the Supabase login form.
+  Supabase will handle authentication and create your user record automatically.
+5. Begin betting with Acorns
+   Each new user starts with 100 Acorns in their balance.
+
+
