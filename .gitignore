@@ -15,5 +15,6 @@ bin/
 *.iml
 
 Getting-Data/demo/src/main/resources/application.properties
+.env
 
 
