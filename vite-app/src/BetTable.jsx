@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import sample_data from "./sampleData";
+import { supabase } from "./supabaseClient";
 import {
   Box,
   Table,
@@ -13,14 +14,13 @@ import {
   Typography,
 } from "@mui/material";
 
-const BetTable = ({ game, formatTime, betType, addProfit }) => {
+const BetTable = ({ game, formatTime, betType, addProfit, userId }) => {
   const [betTeam, setBetTeam] = useState("");
   const [showTotalTable, setShowTotalTable] = useState(false);
   const [showH2HTable, setShowH2HTable] = useState(false);
   const [homeBetInput, setHomeBetInput] = useState("");
   const [awayBetInput, setAwayBetInput] = useState("");
   const [tableOdds, setTableOdds] = useState("");
-  const [userObj, setUserObj] = useState({});
   const [ttDescription, setTTDescription] = useState("");
 
   let oddsDictionary = {};
@@ -83,7 +83,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     }
   };
 
-  const createUserObj = (betTeam, homeBetInput, awayBetInput) => {
+  const createBetObject = (betTeam, homeBetInput, awayBetInput) => {
     let lineUpdated = "";
     let isOver = false;
     let objBetType = "";
@@ -106,45 +106,81 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     }
 
     return {
-      gameId: game.id,
-      type: objBetType,
-      team: betTeam,
-      odds:
-        betTeam === game.home_team
-          ? oddsDictionary[game.home_team][tableOdds]
-          : oddsDictionary[game.away_team][tableOdds],
-      line: lineUpdated,
-      isOver: isOver,
-      amount: betTeam === game.home_team ? homeBetInput : awayBetInput,
-    };
+    user_id: userId,        
+    game_id: game.id,      
+    type: objBetType,
+    team: betTeam,
+    odds: betTeam === game.home_team
+      ? oddsDictionary[game.home_team][tableOdds]
+      : oddsDictionary[game.away_team][tableOdds],
+    line: lineUpdated,
+    is_over: isOver,      
+    amount: Number(betTeam === game.home_team ? homeBetInput : awayBetInput),
+    status: 'pending'      
   };
+};
 
-  const onClickHandle = async (teamName, gameId) => {
-    console.log(`xxx ${gameId}`);
-    setBetTeam(teamName);
+  const onClickHandle = async (teamName) => {
+  setBetTeam(teamName);
 
-    if (teamName === game.home_team) {
-      addProfit(homeProfit);
-    } else if (teamName === game.away_team) {
-      addProfit(awayProfit);
-    }
+  // gets the bet amount
+  const betAmount = Number(teamName === game.home_team ? homeBetInput : awayBetInput);
+  
+  // validates bet amount
+  if (!betAmount || betAmount <= 0) {
+    alert("Please enter a valid bet amount!");
+    return;
+  }
 
-    const objForBackend = createUserObj(teamName, homeBetInput, awayBetInput);
-    console.log(`user object before fetch: ${JSON.stringify(userObj)}`);
+  // checks if user has enough balance 
+  const canPlaceBet = addProfit(betAmount);
+  if (!canPlaceBet) return;  // stops if insufficient funds
 
-    const response = await fetch(`http://localhost:8080/submit-bet`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(objForBackend),
-    });
+  try {
+        console.log("userId prop:", userId);
+    console.log("userId type:", typeof userId);
+    
+    const { data: { user } } = await supabase.auth.getUser();
+    console.log("auth.uid():", user.id);
+    console.log("auth.uid() type:", typeof user.id);
+    console.log("Do they match?", userId === user.id);
+    
+    
+    // create bet object with all the details
+    const betObject = createBetObject(teamName, homeBetInput, awayBetInput);
+    console.log('Placing bet:', betObject);
 
-    if (!response.ok) {
-      throw new Error("Failed to place bet");
-    }
-  };
+    // insert bet into Supabase bet table
+    const { data: betData, error: betError } = await supabase
+      .from('bets')           
+      .insert([betObject])   
+      .select()               
+      .single();              
+
+    if (betError) throw betError;
+
+    // create transaction record in t table
+    const { error: transactionError } = await supabase
+      .from('transactions')
+      .insert([{
+        user_id: userId,
+        amount_changed: betAmount,
+        transaction_type: 'bet_placed'
+      }]);
+
+    if (transactionError) throw transactionError;
+
+    
+    alert(`Bet placed successfully on ${teamName}!`);
+    
+    setHomeBetInput("");
+    setAwayBetInput("");
+    
+  } catch (error) {
+    console.error("Error placing bet:", error);
+    alert("Failed to place bet: " + error.message);
+  }
+};
 
   useEffect(() => {
     setBetTeam("");
@@ -184,7 +220,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
     oddsDictionary[game.away_team][tableOdds],
   );
 
-  console.log(`user object: ${JSON.stringify(userObj)}`);
+ 
 
   return (
     <Box
@@ -228,7 +264,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
                     />
                     <Button
                       variant="contained"
-                      onClick={() => onClickHandle(game.home_team, game.id)}
+                      onClick={() => onClickHandle(game.home_team)}
                     >
                       Place
                     </Button>
@@ -251,7 +287,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
                     />
                     <Button
                       variant="contained"
-                      onClick={() => onClickHandle(game.away_team, game.id)}
+                      onClick={() => onClickHandle(game.away_team)}
                     >
                       Place
                     </Button>
@@ -300,7 +336,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
                     />
                     <Button
                       variant="contained"
-                      onClick={() => onClickHandle(game.home_team, game.id)}
+                      onClick={() => onClickHandle(game.home_team)}
                     >
                       Place
                     </Button>
@@ -330,7 +366,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
                     />
                     <Button
                       variant="contained"
-                      onClick={() => onClickHandle(game.away_team, game.id)}
+                      onClick={() => onClickHandle(game.away_team)}
                     >
                       Place
                     </Button>
@@ -380,7 +416,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
                     />
                     <Button
                       variant="contained"
-                      onClick={() => onClickHandle(game.home_team, game.id)}
+                      onClick={() => onClickHandle(game.home_team)}
                     >
                       Place
                     </Button>
@@ -408,7 +444,7 @@ const BetTable = ({ game, formatTime, betType, addProfit }) => {
                     />
                     <Button
                       variant="contained"
-                      onClick={() => onClickHandle(game.away_team, game.id)}
+                      onClick={() => onClickHandle(game.away_team)}
                     >
                       Place
                     </Button>

@@ -4,7 +4,7 @@ import BetTable from "./BetTable";
 import { useState } from "react";
 import { Button, Box } from "@mui/material";
 
-export const GameList2 = ({ addProfit }) => {
+export const GameList2 = ({ addProfit, userId }) => {
   const [betType, setBetType] = useState("Moneyline");
 
   const formatTime = (time) => {
@@ -74,6 +74,7 @@ export const GameList2 = ({ addProfit }) => {
             formatTime={formatTime}
             betType={betType}
             addProfit={addProfit}
+            userId={userId}
           />
         ))}
       </Box>

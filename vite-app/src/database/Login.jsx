@@ -1,13 +1,9 @@
 //import "./index.css";
 import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
 import { Typography, Box } from "@mui/material";
+import { supabase } from '../supabaseClient';
 
-export const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY,
-);
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
