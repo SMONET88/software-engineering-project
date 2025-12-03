@@ -103,12 +103,8 @@ const BetTable = ({ game, formatTime, betType, addProfit, userId }) => {
       objBetType = "SPREAD";
       lineUpdated = oddsDictionary[game.away_team].spreadLine;
       isOver = null;
-    };
+    }
 
-    const {
-      data: { session },
-    } = supabase.auth.getSession();
-    const userId = session.user.id;
     return {
     user_id: userId,        
     game_id: game.id,      
@@ -136,17 +132,6 @@ const BetTable = ({ game, formatTime, betType, addProfit, userId }) => {
     return;
   }
 
-    const objForBackend = await createUserObj(teamName, homeBetInput, awayBetInput);
-    console.log(`USER OBJ XXXXXXXXXXXX: ${JSON.stringify(objForBackend)}`);
-    
-    // const response = await fetch(`http://localhost:8080/submit-bet`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    //   body: JSON.stringify(objForBackend),
-    // });
   // checks if user has enough balance 
   const canPlaceBet = addProfit(betAmount);
   if (!canPlaceBet) return;  // stops if insufficient funds
