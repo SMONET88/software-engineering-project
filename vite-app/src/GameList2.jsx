@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Button, Box } from "@mui/material";
 import { VerifyBet } from "./VerifyBet";
 
-export const GameList2 = ({ addProfit }) => {
+export const GameList2 = ({ addProfit, userId }) => {
   const [betType, setBetType] = useState("Moneyline");
   const [verifyButton, setShowVerifyButton] = useState(false);
 
@@ -104,6 +104,7 @@ export const GameList2 = ({ addProfit }) => {
             formatTime={formatTime}
             betType={betType}
             addProfit={addProfit}
+            userId={userId}
           />
         ))}
       </Box>

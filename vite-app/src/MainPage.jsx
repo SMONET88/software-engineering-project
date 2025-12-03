@@ -1,21 +1,88 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GameList2 } from "./GameList2";
-
-import { Box, Typography } from "@mui/material";
+import sample_data from "./sampleData";
+import { Box, Typography, CircularProgress } from "@mui/material";
+import { supabase } from "./supabaseClient";
 
 
 const MainPage = () => {
-  const [money, setMoney] = useState(100);
+  const [money, setMoney] = useState(0); 
   const [totalProfit, setTotalProfit] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState(null);
 
-  const addProfit = (newProfitAddition) => {
-    if (money - newProfitAddition < 0) {
-      alert("You don't have enough money!");
-    } else {
-      setTotalProfit((prev) => prev + newProfitAddition);
-      setMoney((prev) => prev - newProfitAddition);
+ const addProfit = (betAmount) => {
+  if (money - betAmount < 0) {
+    alert("You don't have enough money!");
+    return false;  
+  } else {
+    const newBalance = money - betAmount;
+    updateBalance(newBalance);  
+    setTotalProfit((prev) => prev + betAmount);
+    return true; 
+  }
+};
+  useEffect(() => {
+  const fetchUserBalance = async () => {
+    try {
+      console.log("🔍 Starting to fetch user balance...");  // ADD
+      
+      const { data: { user } } = await supabase.auth.getUser();
+      console.log("👤 Current user:", user);  // ADD
+      
+      if (!user) {
+        console.error("❌ No user found");
+        return;
+      }
+      
+      setUserId(user.id);
+      console.log("✅ User ID set:", user.id);  // ADD
+
+      const { data, error } = await supabase
+        .from('users')
+        .select('balance')
+        .eq('id', user.id)
+        .single();
+
+      console.log("💰 Balance data from Supabase:", data);  // ADD
+      console.log("⚠️ Any error?", error);  // ADD
+      
+      if (error) throw error;
+      
+      setMoney(data.balance);
+      console.log("✅ Balance set to:", data.balance);  // ADD
+    } catch (error) {
+      console.error("❌ Error fetching balance:", error);
+    } finally {
+      setLoading(false);
+      console.log("✅ Loading complete");  // ADD
     }
   };
+
+  fetchUserBalance();
+}, []);
+
+const updateBalance = async (newBalance) => {
+  try {
+    const { error } = await supabase
+      .from('users')                    // update the users table
+      .update({ balance: newBalance })  
+      .eq('id', userId);                
+
+    if (error) throw error;
+    setMoney(newBalance);  // also update the UI
+  } catch (error) {
+    console.error("Error updating balance:", error);
+  }
+};
+
+if (loading) {
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <CircularProgress />
+    </Box>
+  );
+}
 
   return (
     <>
@@ -39,7 +106,7 @@ const MainPage = () => {
 
       {/* Tables */}
       <Box>
-        <GameList2 addProfit={addProfit} />
+        <GameList2 games={sample_data} addProfit={addProfit} userId={userId}/>
       </Box>
     </>
   );
