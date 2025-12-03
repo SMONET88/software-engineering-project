@@ -186,10 +186,17 @@ const BetTable = ({ game, formatTime, betType, addProfit, userId }) => {
 
     if (transactionError) throw transactionError;
 
-    if (!response.ok) {
-      throw new Error("Failed to place bet");
-    }
-  };
+    
+    alert(`Bet placed successfully on ${teamName}!`);
+    
+    setHomeBetInput("");
+    setAwayBetInput("");
+    
+  } catch (error) {
+    console.error("Error placing bet:", error);
+    alert("Failed to place bet: " + error.message);
+  }
+};
 
   useEffect(() => {
     setBetTeam("");
