@@ -13,7 +13,6 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { supabase } from "./database/Login";
 
 const BetTable = ({ game, formatTime, betType, addProfit, userId }) => {
   const [betTeam, setBetTeam] = useState("");
@@ -108,7 +107,7 @@ const BetTable = ({ game, formatTime, betType, addProfit, userId }) => {
 
     const {
       data: { session },
-    } = await supabase.auth.getSession();
+    } = supabase.auth.getSession();
     const userId = session.user.id;
     return {
     user_id: userId,        

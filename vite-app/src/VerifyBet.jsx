@@ -1,4 +1,5 @@
-import { supabase } from "./database/Login";
+import { supabase } from "./supabaseClient";
+
 
 export const VerifyBet = async () => {
 
