@@ -1,5 +1,4 @@
 import "./App.css";
-import sample_data from "./sampleData";
 import BetTable from "./BetTable";
 import { useState, useEffect } from "react";
 import { Button, Box } from "@mui/material";
@@ -8,6 +7,7 @@ import { VerifyBet } from "./VerifyBet";
 export const GameList2 = ({ addProfit, userId }) => {
   const [betType, setBetType] = useState("Moneyline");
   const [verifyButton, setShowVerifyButton] = useState(false);
+  const [sample_data, setSampleData] = useState([]);
 
   const formatTime = (time) => {
     const date = new Date(time);
@@ -37,6 +37,27 @@ export const GameList2 = ({ addProfit, userId }) => {
     };
     checkDate();
   }, []);
+
+  useEffect(() => {
+  fetch("http://localhost:8080/bets")
+    .then((response) => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    })
+    .then((data) => {
+      // Convert backend snake_case to frontend camelCase
+      const normalized = data.map((game) => ({
+        ...game,
+        commenceTime: game.commence_time,
+        homeTeam: game.home_team,
+        awayTeam: game.away_team,
+      }));
+      setSampleData(normalized);
+      console.log("Fetched & normalized data:", normalized);
+    })
+    .catch((error) => console.error("Fetch error:", error));
+}, []);
+
 
   return (
     <Box
