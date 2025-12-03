@@ -11,7 +11,7 @@ Our goal is to make sports betting **accessible**, **educational**, and **fun**.
 - **Fun & Low-Pressure Experience:** Encourages fun rather than high stakes gambling.  
 - **Simple, Usable Interface:** Built with clarity and accessibility in mind.  
 
-## How to Run 🛠️
+## Running our application
 
 Scurry Betting is currently set up for local development only. To get started:
 
