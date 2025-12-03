@@ -18,16 +18,16 @@ export const GameList2 = ({ addProfit, userId }) => {
       hours % 12 || 12
     }:${minutes}${ampm}`;
   };
-  
+
   const handleVerifyBet = () => {
-    <VerifyBet />
+    <VerifyBet />;
     console.log("Bet verified");
   };
-  
+
   useEffect(() => {
     const checkDate = async () => {
-    const today = new Date();
-    const weekday = 2 //today.getDay();
+      const today = new Date();
+      const weekday = 2; //today.getDay();
       if (weekday === 2) {
         setShowVerifyButton(true);
         console.log("Today is Tuesday");
@@ -38,27 +38,29 @@ export const GameList2 = ({ addProfit, userId }) => {
     checkDate();
   }, []);
 
-
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row", // side-by-side layout
-        alignItems: "flex-start",
-        flex: "0 0 200px",
-        mt: 1,
-
+        flexDirection: "row",
+        alignItems: "center", 
+        justifyContent: "center", 
+        minHeight: "100vh", 
+        gap: 4, 
+        px: 2, 
       }}
     >
       {/* Left column: buttons */}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          alignItems: "flex-start",
-          flex: "0 0 200px",
-        }}
+           display: "flex",
+           flexDirection: "column",
+           gap: 2,
+           position: "absolute", 
+           left: 32,
+           top: "50%", // Position at 50% from top
+           transform: "translateY(-50%)", // Shift up by half its own height
+         }}
       >
         <Button
           variant={betType === "Win Bet (moneyline)" ? "contained" : "outlined"}
@@ -79,24 +81,14 @@ export const GameList2 = ({ addProfit, userId }) => {
           Totals (over/under)
         </Button>
         {verifyButton && (
-          <Button
-            variant={"contained"}
-            onClick={() => handleVerifyBet()}
-          >
+          <Button variant={"contained"} onClick={() => handleVerifyBet()}>
             Verify
           </Button>
         )}
       </Box>
 
       {/* Right column: tables */}
-      <Box
-        sx={{
-          display: "flex",
-          flex: 1, // take remaining space
-          justifyContent: "center", // center horizontally
-          alignItems: "flex-start", // align to top
-        }}
-      >
+      <Box>
         {sample_data.map((game) => (
           <BetTable
             key={game.id}

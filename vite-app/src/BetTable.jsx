@@ -228,8 +228,8 @@ const BetTable = ({ game, formatTime, betType, addProfit, userId }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
         width: "100%",
+        padding: 2
       }}
     >
       {showH2HTable ? (
