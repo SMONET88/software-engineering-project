@@ -25,6 +25,7 @@ Scurry Betting is currently set up for local development only. To get started:
 3. Start dev server (backend)
    ```bash
    cd getting-data
+   cd demo
    ./mvnw clean spring-boot:run
 4. Log in with Supabase
   Enter your email address into the Supabase login form.
